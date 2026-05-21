@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nida Minhaj — Software Engineer & AI/ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --beige-50: #FAF7F2;
+    --beige-100: #F2EDE3;
+    --beige-200: #E8DFD0;
+    --beige-300: #D9CCBA;
+    --brown-400: #A68B6A;
+    --brown-500: #8B6E4E;
+    --brown-600: #6E5238;
+    --brown-700: #533D28;
+    --brown-800: #3A2A1A;
+    --brown-900: #241A0F;
+    --accent: #C4956A;
+    --accent-dark: #9E6E42;
+    --text-primary: #241A0F;
+    --text-secondary: #6E5238;
+    --text-muted: #A68B6A;
+    --border: #D9CCBA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--beige-50);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* SPLASH PAGE */
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--brown-800);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    will-change: opacity, transform;
+  }
+  #splash.fade-out {
+    animation: splashFadeOut 0.7s ease forwards;
+  }
+  @keyframes splashFadeOut {
+    to { opacity: 0; }
+  }
+  .splash-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: splashItemIn 0.7s 0.3s ease forwards;
+  }
+  .splash-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.8rem, 9vw, 8rem);
+    font-weight: 700;
+    color: var(--beige-100);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: splashItemIn 0.8s 0.5s ease forwards;
+  }
+  .splash-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .splash-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 0 auto 1.6rem;
+    opacity: 0;
+    animation: splashItemIn 0.6s 0.75s ease forwards;
+  }
+  .splash-tagline {
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    font-weight: 400;
+    color: var(--beige-300);
+    letter-spacing: 0.03em;
+    max-width: 540px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: splashItemIn 0.8s 0.95s ease forwards;
+  }
+  .splash-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brown-400);
+    opacity: 0;
+    animation: splashItemIn 0.6s 1.5s ease forwards, splashBob 2s 2.2s ease-in-out infinite;
+  }
+  @keyframes splashItemIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes splashBob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+  }
+  #splash.gone { display: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brown-800);
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 6% 60px;
+    background: linear-gradient(160deg, var(--beige-50) 60%, var(--beige-200) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--beige-300) 0%, transparent 70%);
+    opacity: 0.5;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--beige-200);
+    border: 1px solid var(--border);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--brown-800);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent-dark); }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--brown-700);
+    color: var(--beige-100);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--brown-800); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--brown-500);
+    color: var(--brown-600);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--beige-200); }
+
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--brown-700);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 6%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--brown-800);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+  .divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 1.5rem; }
+
+  /* ABOUT */
+  #about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start; }
+  .about-text p { font-size: 1.02rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.2rem; }
+  .about-text strong { color: var(--brown-700); font-weight: 600; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-item {
+    background: var(--beige-50);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 6px 6px 0;
+  }
+  .highlight-item .hi-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 0.2rem;
+  }
+  .highlight-item .hi-val {
+    font-size: 0.92rem;
+    color: var(--brown-700);
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--beige-50); }
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { padding-top: 4px; }
+  .exp-date {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+  .exp-company {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+  }
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--brown-800);
+    margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+    top: 3px;
+  }
+
+  /* SKILLS */
+  #skills { background: white; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-category {
+    background: var(--beige-50);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.6rem;
+  }
+  .skill-category-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--brown-700);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: all 0.15s;
+  }
+  .skill-tag:hover { background: var(--brown-700); color: var(--beige-100); border-color: var(--brown-700); }
+
+  /* INTERPERSONAL SKILLS */
+  #interpersonal { background: var(--brown-800); }
+  #interpersonal .section-title { color: var(--beige-100); }
+  #interpersonal .section-tag { color: var(--accent); }
+  #interpersonal .section-sub { color: var(--beige-300); }
+  #interpersonal .divider { background: var(--accent); }
+  .soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 0.5rem; }
+  .soft-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 1.8rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .soft-card:hover { background: rgba(255,255,255,0.1); }
+  .soft-icon {
+    width: 44px; height: 44px;
+    background: rgba(196,149,106,0.2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .soft-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--beige-100);
+    margin-bottom: 0.5rem;
+  }
+  .soft-desc { font-size: 0.88rem; color: var(--beige-300); line-height: 1.65; }
+
+  /* PROJECTS */
+  #projects { background: var(--beige-50); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(83,61,40,0.1); }
+  .project-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 0.6rem;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--brown-800);
+    margin-bottom: 0.8rem;
+  }
+  .project-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.2rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-pill {
+    background: var(--beige-100);
+    border: 1px solid var(--border);
+    color: var(--brown-600);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  /* EDUCATION & CERTS */
+  #education { background: white; }
+  .edu-certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .edu-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--brown-800);
+    margin-bottom: 0.2rem;
+  }
+  .edu-school { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.3rem; }
+  .edu-meta { display: flex; gap: 1rem; }
+  .edu-year { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+  .edu-grade {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    background: var(--beige-100);
+    border: 1px solid var(--border);
+    padding: 1px 10px;
+    border-radius: 12px;
+  }
+  .cert-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: var(--beige-50);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .cert-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .cert-name { font-size: 0.88rem; color: var(--brown-700); font-weight: 500; }
+
+  /* CONTACT */
+  #contact { background: var(--beige-200); }
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+  .contact-text p { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--brown-700);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { background: var(--brown-700); color: var(--beige-100); border-color: var(--brown-700); }
+  .contact-link .cl-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--brown-900);
+    color: var(--beige-300);
+    text-align: center;
+    padding: 2rem 6%;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  footer span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
+  .fade-up-3 { animation: fadeUp 0.7s 0.3s ease both; }
+  .fade-up-4 { animation: fadeUp 0.7s 0.45s ease both; }
+
+  @media (max-width: 768px) {
+    .hero-inner, .about-grid, .edu-certs-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SPLASH PAGE -->
+<div id="splash">
+  <div class="splash-eyebrow">Portfolio · 2025</div>
+  <div class="splash-name">Nida <em>Minhaj</em></div>
+  <div class="splash-divider"></div>
+  <div class="splash-tagline">Software Engineer &amp; AI/ML Developer — turning complex problems into clean, production-ready systems that scale.</div>
+  <div class="splash-scroll-hint">↓ &nbsp; Scroll to explore</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Nida Minhaj</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#interpersonal">Leadership</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag fade-up">Available for Opportunities</div>
+      <h1 class="fade-up-2">Software &amp; <em>AI/ML</em> Engineer</h1>
+      <p class="hero-desc fade-up-3">CSE graduate from Stanley College of Engineering, Hyderabad. I build scalable AI pipelines, full-stack applications, and production-deployed systems that solve real-world problems.</p>
+      <div class="hero-actions fade-up-4">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#projects" class="btn-outline">View Projects</a>
+      </div>
+    </div>
+    <div class="hero-stats fade-up-3">
+      <div class="stat-card">
+        <div class="num">95%+</div>
+        <div class="label">Face Detection Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">80%</div>
+        <div class="label">Processing Time Reduced</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">90%+</div>
+        <div class="label">NLP Intent Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">78.9%</div>
+        <div class="label">CGPA — B.E. CSE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">01 — About</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Nida Minhaj</strong>, a Computer Science &amp; Engineering graduate from Stanley College of Engineering and Technology for Women in Hyderabad, India — with a 78.9% CGPA and a deep passion for building software that makes an actual difference.</p>
+        <p>My production engineering experience spans <strong>AI/ML pipelines</strong>, <strong>RESTful backend systems</strong>, and <strong>full-stack web applications</strong>. I architected and deployed iAttendance — a real-world facial recognition attendance system achieving 95%+ accuracy — from the ground up, owning every layer from ML model to database schema to frontend integration.</p>
+        <p>I thrive at the intersection of <strong>data-driven engineering and product thinking</strong>. Whether it's fine-tuning a BERT model for intent classification, designing normalised SQL schemas for sub-100ms queries, or building secure full-stack apps with role-based authentication — I bring clarity, precision, and genuine ownership to every problem I tackle.</p>
+        <p>Beyond code, I'm fluent in <strong>English, Urdu, and Hindi</strong>, and I bring creative energy to everything I build — from technical systems to collaborative team environments.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="hi-label">Current Location</div>
+          <div class="hi-val">Hyderabad, India</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-label">Degree</div>
+          <div class="hi-val">B.E. Computer Science &amp; Engineering</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-label">Core Focus</div>
+          <div class="hi-val">Python · AI/ML · Full Stack · Backend</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-label">Open To</div>
+          <div class="hi-val">SWE · ML/AI · Data · Remote / Hybrid</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-label">Languages</div>
+          <div class="hi-val">English · Urdu · Hindi</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-label">Email</div>
+          <div class="hi-val">nminhaj03@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">02 — Experience</div>
+    <h2 class="section-title">Professional Journey</h2>
+    <div class="divider"></div>
+    <p class="section-sub">1+ year of production software development across AI, backend, and full-stack engineering</p>
+    <div class="exp-timeline">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Sep 2024 – Feb 2025</div>
+          <div class="exp-company">Creative Technosoft Systems</div>
+        </div>
+        <div>
+          <div class="exp-role">Software Development Engineer</div>
+          <ul class="exp-bullets">
+            <li>Architected and deployed iAttendance end-to-end — an OpenCV facial recognition ML pipeline integrated with a Python Flask REST API (8+ endpoints), ASP.NET frontend, and SQL Server database, reducing manual attendance processing time by 80% for 100+ daily active users in production.</li>
+            <li>Drove 95%+ face detection accuracy and reduced model false positives by 30% through systematic feature engineering, image preprocessing, and Haar Cascade fine-tuning across the full ML pipeline.</li>
+            <li>Designed a normalised SQL Server schema with complex joins, aggregations, and indexed lookups achieving sub-100ms query response times; built Python Pandas/NumPy ETL scripts for scalable data transformation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">May 2024 – Jun 2024</div>
+          <div class="exp-company">Interny Internships</div>
+        </div>
+        <div>
+          <div class="exp-role">Python Developer</div>
+          <ul class="exp-bullets">
+            <li>Delivered 2 production-ready Python applications independently within a 4-week agile sprint, both accepted without revision — demonstrating clean OOP code, comprehensive documentation, and consistent on-time delivery.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jun 2022 – Jul 2022</div>
+          <div class="exp-company">Internshala</div>
+        </div>
+        <div>
+          <div class="exp-role">Core Java Software Engineer</div>
+          <ul class="exp-bullets">
+            <li>Implemented complete game logic, state management, and edge case handling for a multi-user Java application; achieved zero post-delivery bugs across all test scenarios through rigorous unit testing and defensive programming.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">03 — Skills</div>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Production-tested across AI, backend, full-stack, and data engineering</p>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-category-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript (ES6+)</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">AI / ML / NLP</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">BERT / Transformers</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">NLTK</span>
+          <span class="skill-tag">CNNs / RNNs</span>
+          <span class="skill-tag">Intent Classification</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Backend &amp; Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Flask</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">REST API Design</span>
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">ASP.NET</span>
+          <span class="skill-tag">ETL Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Frontend &amp; Full Stack</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">AJAX</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">Session Management</span>
+          <span class="skill-tag">RBAC</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Data &amp; Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Engineering Practices</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OOP</span>
+          <span class="skill-tag">MVC Architecture</span>
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Unit Testing</span>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">Security (XSS/SQLi)</span>
+          <span class="skill-tag">Postman</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERPERSONAL / LEADERSHIP -->
+<section id="interpersonal">
+  <div class="section-inner">
+    <div class="section-tag">04 — Leadership &amp; Character</div>
+    <h2 class="section-title">Beyond the Code</h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="color: var(--beige-300);">The qualities that make me a collaborative, high-impact team member</p>
+    <div class="soft-grid">
+      <div class="soft-card">
+        <div class="soft-icon">🎯</div>
+        <div class="soft-title">End-to-End Ownership</div>
+        <div class="soft-desc">I don't just write code — I own outcomes. From iAttendance's architecture to its production deployment, I've consistently taken responsibility for the full product lifecycle without waiting to be directed.</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-icon">🤝</div>
+        <div class="soft-title">Cross-Functional Collaboration</div>
+        <div class="soft-desc">Working across ML, backend, and frontend layers taught me how to communicate with technical and non-technical stakeholders alike — bridging gaps and keeping teams aligned on shared goals.</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-icon">🔍</div>
+        <div class="soft-title">Analytical Problem Solving</div>
+        <div class="soft-desc">I approach complex problems with structured thinking — breaking them into hypotheses, designing experiments (like ML feature testing), and letting data guide decisions rather than assumptions.</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-icon">⚡</div>
+        <div class="soft-title">Adaptability &amp; Speed</div>
+        <div class="soft-desc">Delivering two production-ready Python apps in 4 weeks without revision reflects my ability to ramp up quickly, self-manage under deadlines, and deliver clean, maintainable work under pressure.</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-icon">📣</div>
+        <div class="soft-title">Clear Communication</div>
+        <div class="soft-desc">Whether writing technical documentation, presenting system designs, or collaborating in Agile sprints, I communicate with precision and clarity — ensuring ideas translate into aligned action.</div>
+      </div>
+      <div class="soft-card">
+        <div class="soft-icon">🌱</div>
+        <div class="soft-title">Continuous Learning</div>
+        <div class="soft-desc">From self-studying BERT fine-tuning to picking up Power BI for stakeholder dashboards, I proactively seek out the skills a project demands — with a growth mindset at every stage of my career.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">05 — Projects</div>
+    <h2 class="section-title">Key Projects</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-label">AI · Computer Vision · Production</div>
+        <div class="project-title">iAttendance — Facial Recognition System</div>
+        <div class="project-desc">End-to-end production attendance system achieving 95%+ face detection accuracy with 80% reduction in manual processing time for 100+ daily users. Full stack: ML pipeline → Flask REST API → SQL Server → ASP.NET frontend.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">OpenCV</span>
+          <span class="tech-pill">Flask</span>
+          <span class="tech-pill">SQL Server</span>
+          <span class="tech-pill">ASP.NET</span>
+          <span class="tech-pill">Haar Cascade</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">NLP · Deep Learning · Production</div>
+        <div class="project-title">Voice-Based NLP AI Assistant</div>
+        <div class="project-desc">Speech-to-text AI pipeline with a fine-tuned BERT intent classifier achieving 90%+ accuracy across 15+ intent classes. Automates 10+ desktop task categories via real-world voice commands.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">BERT</span>
+          <span class="tech-pill">Transformers</span>
+          <span class="tech-pill">SpeechRecognition</span>
+          <span class="tech-pill">NLTK</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">Full Stack · Security · Web</div>
+        <div class="project-title">Online Voting System</div>
+        <div class="project-desc">Secure multi-page full-stack web application with session authentication, role-based access control, normalised SQL backend, and comprehensive XSS and SQL injection protection.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Flask</span>
+          <span class="tech-pill">SQL</span>
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">HTML5/CSS3</span>
+          <span class="tech-pill">REST API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">Backend · Real-Time Data · API</div>
+        <div class="project-title">Weather Forecast App</div>
+        <div class="project-desc">Python Flask backend consuming third-party REST APIs with JSON normalisation. JavaScript AJAX frontend renders live weather data in under 1 second with no page reloads.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Flask</span>
+          <span class="tech-pill">REST API</span>
+          <span class="tech-pill">AJAX</span>
+          <span class="tech-pill">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">Data Analysis · Visualisation</div>
+        <div class="project-title">Data Analysis &amp; Visualisation Dashboard</div>
+        <div class="project-desc">Multi-dimensional dataset analysis using statistical modelling, producing 8+ chart types (heatmaps, time-series, distributions) for stakeholder reporting and data-driven decision making.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">NumPy</span>
+          <span class="tech-pill">Matplotlib</span>
+          <span class="tech-pill">Seaborn</span>
+          <span class="tech-pill">Power BI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-tag">06 — Education &amp; Certifications</div>
+    <h2 class="section-title">Academic Background</h2>
+    <div class="divider"></div>
+    <div class="edu-certs-grid">
+      <div>
+        <div class="edu-item">
+          <div class="edu-degree">B.E. Computer Science &amp; Engineering</div>
+          <div class="edu-school">Stanley College of Engineering and Technology for Women, Hyderabad</div>
+          <div class="edu-meta">
+            <span class="edu-year">2021 – 2025</span>
+            <span class="edu-grade">78.9%</span>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Intermediate (Class XII)</div>
+          <div class="edu-school">Narayana Junior College</div>
+          <div class="edu-meta">
+            <span class="edu-grade">78%</span>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">High School (Class X)</div>
+          <div class="edu-school">New Middle East International School</div>
+          <div class="edu-meta">
+            <span class="edu-grade">87%</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 1rem;">Certifications</div>
+        <div class="cert-list">
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Microsoft Power BI Data Analyst</div></div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">IBM Full Stack Software Developer</div></div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Cybersecurity Certification</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">07 — Contact</div>
+    <div class="contact-grid">
+      <div>
+        <h2 class="section-title">Open to New Opportunities</h2>
+        <div class="divider"></div>
+        <div class="contact-text">
+          <p>I'm actively seeking opportunities in Software Engineering, AI/ML, Full Stack Development, and Data roles. If you're building something meaningful — or know a team that needs an engineer who cares deeply about their work — I'd love to connect.</p>
+        </div>
+        <a href="https://mail.google.com/mail/?view=cm&to=nminhaj03@gmail.com" target="_blank" class="btn-primary" style="display:inline-block;">Send an Email →</a>
+      </div>
+      <div class="contact-links">
+        <a href="https://mail.google.com/mail/?view=cm&to=nminhaj03@gmail.com" target="_blank" class="contact-link">
+          <span class="cl-icon">✉️</span>
+          nminhaj03@gmail.com
+        </a>
+        <a href="tel:+917075756493" class="contact-link">
+          <span class="cl-icon">📞</span>
+          +91 70757 56493
+        </a>
+        <a href="https://linkedin.com/in/nida-minhaj20" target="_blank" class="contact-link">
+          <span class="cl-icon">🔗</span>
+          linkedin.com/in/nida-minhaj20
+        </a>
+        <a href="https://github.com/nidaa26" target="_blank" class="contact-link">
+          <span class="cl-icon">🐙</span>
+          github.com/nidaa26
+        </a>
+        <a href="#" class="contact-link">
+          <span class="cl-icon">📍</span>
+          Hyderabad, India
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Nida Minhaj — Software Engineer &amp; AI/ML Developer &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; <span>© 2025</span></p>
+</footer>
+
+<script>
+  (function () {
+    const splash = document.getElementById('splash');
+    if (!splash) return;
+
+    document.body.style.overflow = 'hidden';
+
+    let dismissed = false;
+
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      document.body.style.overflow = '';
+      splash.classList.add('fade-out');
+      splash.addEventListener('animationend', () => {
+        splash.classList.add('gone');
+      }, { once: true });
+    }
+
+    window.addEventListener('wheel', dismiss, { passive: true, once: true });
+    window.addEventListener('touchmove', dismiss, { passive: true, once: true });
+    window.addEventListener('keydown', dismiss, { once: true });
+
+    setTimeout(dismiss, 8000);
+  })();
+</script>
+</body>
+</html>
