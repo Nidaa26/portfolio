@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -484,9 +485,21 @@
     background: var(--beige-50);
     border: 1px solid var(--border);
     border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
   }
-  .cert-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
-  .cert-name { font-size: 0.88rem; color: var(--brown-700); font-weight: 500; }
+  .cert-item:hover {
+    background: var(--brown-700);
+    border-color: var(--brown-700);
+    transform: translateX(4px);
+  }
+  .cert-item:hover .cert-name { color: var(--beige-100); }
+  .cert-item:hover .cert-dot { background: var(--beige-100); }
+  .cert-item:hover .cert-arrow { color: var(--beige-300); opacity: 1; }
+  .cert-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; transition: background 0.2s; }
+  .cert-name { font-size: 0.88rem; color: var(--brown-700); font-weight: 500; flex: 1; transition: color 0.2s; }
+  .cert-arrow { font-size: 0.75rem; color: var(--text-muted); opacity: 0; transition: opacity 0.2s; }
 
   /* CONTACT */
   #contact { background: var(--beige-200); }
@@ -664,7 +677,7 @@
       <div class="exp-item">
         <div class="exp-meta">
           <div class="exp-date">May 2024 – Jun 2024</div>
-          <div class="exp-company">Interny </div>
+          <div class="exp-company">Interny</div>
         </div>
         <div>
           <div class="exp-role">Python Developer</div>
@@ -930,9 +943,26 @@
       <div>
         <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 1rem;">Certifications</div>
         <div class="cert-list">
-          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Microsoft Power BI Data Analyst</div></div>
-          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">IBM Full Stack Software Developer</div></div>
-          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Cybersecurity Certification</div></div>
+          <a href="https://www.coursera.org/account/accomplishments/verify/7FME86TM2XWK" target="_blank" class="cert-item">
+            <div class="cert-dot"></div>
+            <div class="cert-name">Microsoft Power BI Data Analyst</div>
+            <div class="cert-arrow">↗</div>
+          </a>
+          <a href="https://www.coursera.org/account/accomplishments/specialization/O6V9EUK4WAK9" target="_blank" class="cert-item">
+            <div class="cert-dot"></div>
+            <div class="cert-name">IBM Full Stack Software Developer</div>
+            <div class="cert-arrow">↗</div>
+          </a>
+          <a href="https://www.credly.com/badges/2aba710a-ae5c-4e52-8b76-d3802d5ed0f7/linked_in_profile" target="_blank" class="cert-item">
+            <div class="cert-dot"></div>
+            <div class="cert-name">Cybersecurity Certification</div>
+            <div class="cert-arrow">↗</div>
+          </a>
+          <a href="https://www.credly.com/badges/05fb6996-7411-49d0-8a21-955d3c15f511/linked_in_profile" target="_blank" class="cert-item">
+            <div class="cert-dot"></div>
+            <div class="cert-name">Artificial Intelligence Fundamentals</div>
+            <div class="cert-arrow">↗</div>
+          </a>
         </div>
       </div>
     </div>
@@ -1010,3 +1040,6 @@
 </script>
 </body>
 </html>
+```
+
+Just copy this, replace your `index.html` on GitHub, and the certifications will be fully clickable — opening each credential in a new tab.
