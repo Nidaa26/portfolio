@@ -32,7 +32,7 @@ I build scalable AI pipelines, full-stack applications, and production-deployed 
 - **Email**: nminhaj03@gmail.com
 - **LinkedIn**: [linkedin.com/in/nida-minhaj20](https://linkedin.com/in/nida-minhaj20)
 - **GitHub**: [github.com/nidaa26](https://github.com/nidaa26)
-- **Phone**: +91 70757 56493
+- **Phone**: 
 
 ---
 
